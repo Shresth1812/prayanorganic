@@ -6,8 +6,6 @@ import garamMasalaImg from '@/assets/garam-masala.jpg';
 import kitchenKingImg from '@/assets/kitchen-king.jpg';
 import onionImg from '@/assets/onion.jpg';
 import gingerImg from '@/assets/ginger.jpg';
-import blackPepperImg from '@/assets/black-pepper.jpg';
-import mustardImg from '@/assets/mustard.jpg';
 
 export interface Product {
   id: number;
@@ -155,37 +153,6 @@ export const products: Product[] = [
     reviews: 91,
     category: "Essential Spices"
   },
-  {
-    id: 9,
-    name: "Black Pepper Powder",
-    slug: "black-pepper-powder",
-    price: 95,
-    weights: ["100g", "250g", "500g"],
-    description: "King of spices with bold, sharp flavor and piperine benefits.",
-    longDescription: "Known as the 'King of Spices,' our Black Pepper is sourced from the Malabar coast. Freshly ground to order, it delivers the sharp, pungent kick that enhances virtually every savory dish while offering numerous health benefits.",
-    ingredients: "100% Pure Black Pepper (Piper nigrum)",
-    nutrition: "Per 100g: Calories 251 kcal, Protein 10g, Fat 3g, Carbs 64g, Fiber 25g, Piperine 5-9%",
-    image: blackPepperImg,
-    sku: "PR-BP-100",
-    rating: 4.9,
-    reviews: 178,
-    category: "Essential Spices"
-  },
-  {
-    id: 10,
-    name: "Mustard Powder",
-    slug: "mustard-powder",
-    price: 55,
-    weights: ["100g", "250g", "500g"],
-    description: "Pungent mustard powder for pickles, marinades, and Bengali cuisine.",
-    longDescription: "Our Mustard Powder is made from premium yellow and brown mustard seeds, ground to release their characteristic sharp, tangy flavor. Essential for making homemade mustard sauce, pickles, and traditional Bengali dishes.",
-    ingredients: "100% Pure Mustard Seeds (Brassica juncea & Sinapis alba)",
-    nutrition: "Per 100g: Calories 508 kcal, Protein 26g, Fat 36g, Carbs 28g, Fiber 12g",
-    image: mustardImg,
-    sku: "PR-MP-100",
-    rating: 4.6,
-    reviews: 54,
-    category: "Essential Spices"
   }
 ];
 
