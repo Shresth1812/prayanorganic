@@ -152,7 +152,6 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 91,
     category: "Essential Spices"
-  },
   }
 ];
 
