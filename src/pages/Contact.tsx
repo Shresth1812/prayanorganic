@@ -60,7 +60,7 @@ const Contact = () => {
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent("Hi! I'm interested in Prayan Organic spices.");
-    window.open(`https://wa.me/919876543210?text=${message}`, '_blank');
+    window.open(`https://wa.me/919974849812?text=${message}`, '_blank');
   };
 
   return (
@@ -92,8 +92,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-foreground">Address</h3>
                     <p className="text-muted-foreground text-sm">
-                      123 Spice Market, Chandni Chowk<br />
-                      New Delhi, India - 110001
+                      Balaji Complex, Kawas, Hazira Road, Surat, Gujarat - 394510
                     </p>
                   </div>
                 </div>
@@ -104,8 +103,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground">Phone</h3>
-                    <a href="tel:+919876543210" className="text-muted-foreground text-sm hover:text-primary transition-colors">
-                      +91 98765 43210
+                    <a href="tel:+919974849812" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                      +91 99748 49812
                     </a>
                   </div>
                 </div>
@@ -116,8 +115,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground">Email</h3>
-                    <a href="mailto:hello@prayanorganic.com" className="text-muted-foreground text-sm hover:text-primary transition-colors">
-                      hello@prayanorganic.com
+                    <a href="mailto:prayanorganic@gmail.com" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                      prayanorganic@gmail.com
                     </a>
                   </div>
                 </div>

@@ -79,19 +79,19 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-primary mt-1 shrink-0" />
                 <span className="text-background/70 text-sm">
-                  123 Spice Market, New Delhi, India - 110001
+                  Balaji Complex, Kawas, Hazira Road, Surat, Gujarat - 394510
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-primary shrink-0" />
-                <a href="tel:+919876543210" className="text-background/70 hover:text-primary transition-colors text-sm">
-                  +91 98765 43210
+                <a href="tel:+919974849812" className="text-background/70 hover:text-primary transition-colors text-sm">
+                  +91 99748 49812
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-primary shrink-0" />
-                <a href="mailto:hello@prayanorganic.com" className="text-background/70 hover:text-primary transition-colors text-sm">
-                  hello@prayanorganic.com
+                <a href="mailto:prayanorganic@gmail.com" className="text-background/70 hover:text-primary transition-colors text-sm">
+                  prayanorganic@gmail.com
                 </a>
               </li>
             </ul>
