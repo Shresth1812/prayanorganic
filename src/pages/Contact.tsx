@@ -137,14 +137,14 @@ const Contact = () => {
             {/* Map */}
             <div className="glass-card overflow-hidden h-64 md:h-80">
               <iframe
-                src="https://maps.google.com/maps?q=Balaji%20Complex%2C%20Kawas%2C%20Hazira%20Road%2C%20Surat%2C%20Gujarat%20394510&z=15&output=embed"
+                src="https://maps.google.com/maps?q=21.18240686734695,72.71137049563937&z=17&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Prayan Organic Location - Surat"
+                title="Prayan Organic Location - Balaji Complex, Surat"
               />
             </div>
           </div>
