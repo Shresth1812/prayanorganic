@@ -1,11 +1,11 @@
 import turmericImg from '@/assets/turmeric.png';
-import chilliImg from '@/assets/chilli.jpg';
-import corianderImg from '@/assets/coriander.jpg';
-import cuminImg from '@/assets/cumin.jpg';
-import garamMasalaImg from '@/assets/garam-masala.jpg';
-import kitchenKingImg from '@/assets/kitchen-king.jpg';
-import onionImg from '@/assets/onion.jpg';
-import gingerImg from '@/assets/ginger.jpg';
+import chilliImg from '@/assets/chilli.png';
+import corianderImg from '@/assets/coriander.png';
+import cuminImg from '@/assets/cumin.png';
+import garamMasalaImg from '@/assets/garam-masala.png';
+import kitchenKingImg from '@/assets/kitchen-king.png';
+import onionImg from '@/assets/onion.png';
+import gingerImg from '@/assets/ginger.png';
 
 export interface Product {
   id: number;
