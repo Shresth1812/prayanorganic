@@ -1,4 +1,4 @@
-import turmericImg from '@/assets/turmeric.jpg';
+import turmericImg from '@/assets/turmeric.png';
 import chilliImg from '@/assets/chilli.jpg';
 import corianderImg from '@/assets/coriander.jpg';
 import cuminImg from '@/assets/cumin.jpg';
