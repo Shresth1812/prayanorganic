@@ -23,10 +23,16 @@ const Cart = () => {
   const handleRazorpay = async () => {
     try {
       const amount = Math.round(getTotalPrice()); // in rupees
+      const payload = {
+        amount,
+        items: items.map(i => ({ id: i.product.id, name: i.product.name, qty: i.quantity, weight: i.weight, price: i.product.price })),
+        customer: null,
+      };
+
       const resp = await fetch('/api/razorpay/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount }),
+        body: JSON.stringify(payload),
       });
 
       if (!resp.ok) {
@@ -44,10 +50,32 @@ const Cart = () => {
         name: 'Prayan Organic',
         description: 'Order Payment',
         order_id: data.id,
+        prefill: {
+          // client can be updated to send name/email/phone
+        },
         handler: function (response: any) {
           // Successful payment
-          toast({ title: 'Payment Successful', description: 'Thank you! Your payment was successful.' });
-          clearCart();
+          // Verify payment server-side and mark local order paid
+          fetch('/api/razorpay/verify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+              localOrderId: data.localOrderId,
+            }),
+          }).then(r => r.json()).then(j => {
+            if (j.ok) {
+              toast({ title: 'Payment Successful', description: 'Thank you! Your payment was successful.' });
+              clearCart();
+            } else {
+              toast({ title: 'Payment Error', description: 'Payment succeeded but verification failed.' });
+            }
+          }).catch(err => {
+            console.error(err);
+            toast({ title: 'Payment Error', description: 'Verification request failed.' });
+          });
         },
         modal: {
           ondismiss: function () {

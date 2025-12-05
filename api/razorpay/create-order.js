@@ -1,4 +1,5 @@
 const Razorpay = require('razorpay');
+const { createOrder } = require('../_helpers/orders');
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -6,7 +7,7 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const { amount } = req.body;
+  const { amount, items, customer } = req.body;
   if (!amount || Number.isNaN(Number(amount))) {
     res.status(400).json({ error: 'Invalid amount' });
     return;
@@ -21,25 +22,39 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const instance = new Razorpay({
-      key_id,
-      key_secret,
-    });
+    const instance = new Razorpay({ key_id, key_secret });
 
+    const receipt = `receipt_order_${Date.now()}`;
     const options = {
       amount: Math.round(Number(amount) * 100), // amount in paise
       currency: 'INR',
-      receipt: `receipt_order_${Date.now()}`,
+      receipt,
       payment_capture: 1,
     };
 
     const order = await instance.orders.create(options);
+
+    // create local order record
+    const localOrder = {
+      id: `ORD_${Date.now()}`,
+      razorpay_order_id: order.id,
+      amount: order.amount,
+      currency: order.currency,
+      receipt,
+      items: items || [],
+      customer: customer || null,
+      status: 'created',
+      createdAt: new Date().toISOString(),
+    };
+
+    createOrder(localOrder);
 
     res.status(200).json({
       id: order.id,
       amount: order.amount,
       currency: order.currency,
       key: key_id,
+      localOrderId: localOrder.id,
     });
   } catch (err) {
     console.error('Razorpay create order error', err);
