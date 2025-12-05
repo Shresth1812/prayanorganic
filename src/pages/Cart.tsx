@@ -9,9 +9,69 @@ const Cart = () => {
 
   const handleCheckout = () => {
     toast({
-      title: "Coming Soon!",
-      description: "Online payment will be available soon. Contact us for orders via WhatsApp.",
+      title: "Choose Payment",
+      description: "Select Cash on Delivery or Pay via UPI (Razorpay).",
     });
+  };
+
+  const handleCOD = () => {
+    // Simulate placing order for COD
+    toast({ title: 'Order placed', description: 'Your order has been placed (Cash on Delivery).' });
+    clearCart();
+  };
+
+  const handleRazorpay = async () => {
+    try {
+      const amount = Math.round(getTotalPrice()); // in rupees
+      const resp = await fetch('/api/razorpay/create-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount }),
+      });
+
+      if (!resp.ok) {
+        const err = await resp.json();
+        toast({ title: 'Payment Error', description: err?.error || 'Failed to create payment order.' });
+        return;
+      }
+
+      const data = await resp.json();
+
+      const options = {
+        key: data.key,
+        amount: data.amount,
+        currency: data.currency,
+        name: 'Prayan Organic',
+        description: 'Order Payment',
+        order_id: data.id,
+        handler: function (response: any) {
+          // Successful payment
+          toast({ title: 'Payment Successful', description: 'Thank you! Your payment was successful.' });
+          clearCart();
+        },
+        modal: {
+          ondismiss: function () {
+            toast({ title: 'Payment Dismissed', description: 'You dismissed the payment window.' });
+          },
+        },
+      } as any;
+
+      const script = document.createElement('script');
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      document.body.appendChild(script);
+      script.onload = () => {
+        const Razorpay = (window as any).Razorpay;
+        if (!Razorpay) {
+          toast({ title: 'Payment Error', description: 'Razorpay SDK failed to load.' });
+          return;
+        }
+        const rzp = new Razorpay(options);
+        rzp.open();
+      };
+    } catch (error) {
+      console.error(error);
+      toast({ title: 'Payment Error', description: 'Unexpected error while initiating payment.' });
+    }
   };
 
   if (items.length === 0) {
@@ -142,13 +202,19 @@ const Cart = () => {
                 </div>
               </div>
 
-              <Button variant="hero" size="lg" className="w-full" onClick={handleCheckout}>
-                Proceed to Checkout
-              </Button>
+              <div className="space-y-3">
+                <Button variant="hero" size="lg" className="w-full" onClick={handleRazorpay}>
+                  Pay with UPI (Razorpay)
+                </Button>
 
-              <p className="text-xs text-muted-foreground text-center mt-4">
-                Secure checkout powered by industry-standard encryption
-              </p>
+                <Button variant="outline" size="lg" className="w-full" onClick={handleCOD}>
+                  Cash On Delivery
+                </Button>
+
+                <p className="text-xs text-muted-foreground text-center mt-2">
+                  Secure checkout powered by industry-standard encryption
+                </p>
+              </div>
             </div>
           </div>
         </div>
